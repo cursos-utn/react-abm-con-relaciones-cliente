@@ -52,14 +52,14 @@ export default function EditarTelefono(props) {
     const guardar = async () => {
         // form
         await axios.put('https://react-abm-basico-server.herokuapp.com/api/telefonos/' + params.id, form);
-        props.history.push('/');
+        props.history.push('/telefonos');
     };
 
     return (
         <div>
             <input type="text" name="numero" placeholder="numero" value={form.numero} onChange={handleChangeNumero} />
-            <br />
             <select name="persona_id" onChange={handleChangePersona}>
+                <option value="">Seleccione una persona</option>
                 {personas.map(unaPersona => (
                     <option value={unaPersona.id}>
                         {unaPersona.nombre} {unaPersona.apellido}

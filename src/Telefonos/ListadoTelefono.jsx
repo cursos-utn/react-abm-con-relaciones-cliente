@@ -19,7 +19,7 @@ export default function ListadoTelefonos() {
                     : '';
                 return nuevaEstructuraTelefono;
             });
-            setListado(respuesta.data);
+            setListado(newListado);
             setError('');
         } catch (e) {
             if (e.message == 'Network error') {
@@ -48,8 +48,8 @@ export default function ListadoTelefonos() {
             <table>
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Persona</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -57,6 +57,7 @@ export default function ListadoTelefonos() {
                     {listado.map(unTelefono => (
                         <tr>
                             <td>{unTelefono.numero}</td>
+                            <td>{unTelefono.persona}</td>
                             <td>
                                 <Link to={'/telefonos/editar/' + unTelefono.id.toString()}>Editar</Link> |&nbsp;
                                 <Link onClick={() => borrarTelefono(unTelefono.id)}>Borrar</Link>

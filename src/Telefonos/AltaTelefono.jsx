@@ -4,8 +4,8 @@ import axios from 'axios';
 export default function AltaTelefono(props) {
     const [personas, setPersonas] = React.useState([]);
     const [form, setForm] = React.useState({
-        nombre: '',
-        apellido: '',
+        numero: '',
+        persona_id: '',
     });
 
     const obtenerPersonas = async () => {
@@ -19,10 +19,10 @@ export default function AltaTelefono(props) {
         obtenerPersonas();
     }, []);
 
-    const handleChangeNombre = e => {
+    const handleChangeNumero = e => {
         // e.target.value
         const nuevoState = JSON.parse(JSON.stringify(form));
-        nuevoState.nombre = e.target.value;
+        nuevoState.numero = e.target.value;
         setForm(nuevoState);
     };
 
@@ -36,14 +36,14 @@ export default function AltaTelefono(props) {
     const guardar = async () => {
         // form
         await axios.post('https://react-abm-basico-server.herokuapp.com/api/telefonos', form);
-        props.history.push('/');
+        props.history.push('/telefonos');
     };
 
     return (
         <div>
             <input type="text" name="numero" placeholder="numero" value={form.numero} onChange={handleChangeNumero} />
             <select name="persona_id" onChange={handleChangePersona}>
-            <br />
+                <option value="">Seleccione una persona</option>
                 {personas.map(unaPersona => (
                     <option value={unaPersona.id}>
                         {unaPersona.nombre} {unaPersona.apellido}

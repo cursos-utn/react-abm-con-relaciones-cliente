@@ -40,7 +40,7 @@ export default function EditarPersona(props) {
     const guardar = async() => {
         // form 
         await axios.put('https://react-abm-basico-server.herokuapp.com/api/personas/'+params.id, form);
-        props.history.push('/');
+        props.history.push('/personas');
     }
 
 
